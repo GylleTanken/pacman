@@ -1439,6 +1439,8 @@ var drawDeadOttoSprite = function(ctx,x,y) {
     drawOttoSprite(ctx,x,y,DIR_LEFT,2,Math.PI/2);
 };
 
+
+
 // draw pacman body
 var drawPacmanSprite = function(ctx,x,y,dirEnum,angle,mouthShift,scale,centerShift,alpha,color,rot_angle) {
 
@@ -1460,13 +1462,42 @@ var drawPacmanSprite = function(ctx,x,y,dirEnum,angle,mouthShift,scale,centerShi
 
     // rotate to current heading direction
     var d90 = Math.PI/2;
-    if (dirEnum == DIR_UP) ctx.rotate(3*d90);
+    /*if (dirEnum == DIR_UP) ctx.rotate(3*d90);
     else if (dirEnum == DIR_RIGHT) ctx.rotate(0);
     else if (dirEnum == DIR_DOWN) ctx.rotate(d90);
-    else if (dirEnum == DIR_LEFT) ctx.rotate(2*d90);
+    else if (dirEnum == DIR_LEFT) ctx.rotate(2*d90);*/
 
     // plant corner of mouth
-    ctx.beginPath();
+    
+    ctx.moveTo(-3+mouthShift,0);
+    /*var christopher           = new Image();
+    var christopher_half_open = new Image();
+    var christopher_open      = new Image();
+
+
+    christopher.src = '../christopher/christopherv2_550.png';
+    christopher_half_open.src = '../christopher/christopherv2_half_open_550.png';
+    christopher_open.src = '../christopher/christopherv2_open_550.png';
+
+    christopher.onload = function() {
+        ctx.drawImage(this, -10, -10, 20, 20);
+    };*/
+    const christopher           = document.getElementById('christopher');
+    const christopher_half_open = document.getElementById('christopher_half_open');
+    const christopher_open      = document.getElementById('christopher_open');
+
+    var image = christopher;
+    if (angle <= Math.PI/5.9)
+    {
+        image = christopher_half_open;
+    }
+    if (angle <= Math.PI/11.9)
+    {
+        image = christopher_open;
+    }
+
+    ctx.drawImage(image, -10, -10, 20, 20);
+/*    ctx.beginPath();
     ctx.moveTo(-3+mouthShift,0);
 
     // draw head outline
@@ -1476,7 +1507,7 @@ var drawPacmanSprite = function(ctx,x,y,dirEnum,angle,mouthShift,scale,centerShi
     //ctx.strokeStyle = color;
     //ctx.stroke();
     ctx.fillStyle = color;
-    ctx.fill();
+    ctx.fill();*/
 
     ctx.restore();
 };
