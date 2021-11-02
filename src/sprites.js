@@ -1486,14 +1486,14 @@ var drawPacmanSprite = function(ctx,x,y,dirEnum,angle,mouthShift,scale,centerShi
     const christopher_half_open = document.getElementById('christopher_half_open');
     const christopher_open      = document.getElementById('christopher_open');
 
-    var image = christopher;
+    var image = christopher_open;
     if (angle <= Math.PI/5.9)
     {
         image = christopher_half_open;
     }
     if (angle <= Math.PI/11.9)
     {
-        image = christopher_open;
+        image = christopher;
     }
 
     ctx.drawImage(image, -10, -10, 20, 20);
